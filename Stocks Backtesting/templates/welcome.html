@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Market backtesting</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+<script>
+	function fuc(){
+        document.getElementById('txt').value;
+        
+        var timeleftmin = document.getElementById('txt').value;
+        var timeleft= 60 * timeleftmin;
+        console.log(timeleft);
+        var downloadTimer = setInterval(function () {
+            if (timeleft <= 0) {
+                clearInterval(downloadTimer);
+                document.getElementById("countdown").innerHTML = "Your Trade Result";
+            } else {
+                document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+            }
+            timeleft -= 1;
+        }, 1000);
+    }
+</script>
+
+</head>
+<div id="loading"></div>
+<div id="content">
+
+	<body align=center>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<legend>
+					<h1>Stocks backtesting</h1>
+				</legend>
+			</div>
+
+			<div class="col-md-4"></div>
+		</div>
+		<h4>written in python by raj._.29</h4>
+		<br>
+
+		<iframe src="http://free.timeanddate.com/clock/i7lutaq3/n1595/tlin/tt0/tm1/td2/ta1" frameborder="0" width="250"
+		height="19"></iframe>
+
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<form class="form-horizontal" action={{ url_for('result') }} method="post">
+
+
+					<div class="form-group">
+						<label class="control-label col-xs-3" for="url">Enter stock:</label>
+						<div class="col-xs-7">
+							<input type="text" name="url" class="form-control" id="url-box"
+								placeholder="nse listed only">
+						</div>
+					</div>
+
+
+
+					<div class="form-group">
+						<label class="control-label col-xs-3" for="var_2">Quantity size:</label>
+						<div class="col-xs-7">
+							<input type="number" class="form-control" name="var_2" placeholder="&nbsp;0&nbsp;">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-xs-3" for="var_3">enter waiting time in minute:</label>
+						<div class="col-xs-7">
+							<input type="number" class="form-control" name="var_3" id="txt" placeholder="waiting time">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-xs-3">Trade operation:</label>
+						<div class="col-xs-5">
+							<select class="form-control" name="operation">
+								<option>LONG</option>
+								<option>SHORT</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-3 col-xs-9">
+							<input type="submit" class="btn btn-success" onclick="fuc();" value="Submit">
+							<input type="reset" class="btn btn-danger" value="Reset">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+</div>
+</div>
+<div id="countdown"> </div>
+
+</body>
+<div>
+	<h5>Use During Indian market hours (09:15 to 15:30)</h5>
+</div>
+
+
+
+
+
+</html>
